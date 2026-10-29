@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กิจกรรมลอยกระทงออนไลน์ ประจำปี 2569 - ศูนย์นันทนาการทวีวัฒนา</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Sarabun & Charm -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'thai-gold': '#F59E0B',
+                        'thai-amber': '#D97706',
+                        'thai-midnight': '#0B132B',
+                        'thai-river': '#1C2541',
+                        'thai-deep': '#0A0F24'
+                    },
+                    fontFamily: {
+                        sarabun: ['Sarabun', 'sans-serif'],
+                        charm: ['Charm', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #050B14;
+            color: #E2E8F0;
+            overflow-x: hidden;
+        }
+
+        .font-charm {
+            font-family: 'Charm', cursive;
+        }
+
+        /* Glowing Moon & Water Animations */
+        .moon-glow {
+            box-shadow: 0 0 60px 20px rgba(254, 240, 138, 0.45), 0 0 120px 40px rgba(253, 224, 71, 0.2);
+        }
+
+        .water-ripple {
+            background: linear-gradient(180deg, rgba(11, 19, 43, 0.4) 0%, rgba(28, 37, 65, 0.8) 50%, rgba(10, 15, 36, 0.95) 100%);
+        }
+
+        /* Water wave animation */
+        @keyframes waveMove {
+            0% { transform: translateX(0) translateZ(0) scaleY(1); }
+            50% { transform: translateX(-25%) translateZ(0) scaleY(1.05); }
+            100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+        }
+
+        .wave-bg {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background-repeat: repeat-x;
+            opacity: 0.18;
+            animation: waveMove 18s linear infinite;
+        }
+
+        /* Floating Flame Animation */
+        @keyframes flameFlicker {
+            0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+            25% { transform: scale(1.15) rotate(1deg); opacity: 1; }
+            50% { transform: scale(0.92) rotate(-2deg); opacity: 0.85; }
+            75% { transform: scale(1.08) rotate(2deg); opacity: 0.98; }
+        }
+
+        .candle-flame {
+            animation: flameFlicker 1.2s ease-in-out infinite alternate;
+            transform-origin: center bottom;
+        }
+
+        /* Smoke effect */
+        @keyframes smokeRise {
+            0% { opacity: 0.8; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-28px) scale(2.2); }
+        }
+
+        .incense-smoke {
+            animation: smokeRise 2.2s infinite ease-out;
+        }
+
+        /* Floating krathong horizontal motion */
+        @keyframes floatRiver {
+            0% { transform: translateX(110vw) translateY(0px) rotate(0deg); }
+            25% { transform: translateX(75vw) translateY(-6px) rotate(1.5deg); }
+            50% { transform: translateX(45vw) translateY(4px) rotate(-1.5deg); }
+            75% { transform: translateX(15vw) translateY(-4px) rotate(1deg); }
+            100% { transform: translateX(-20vw) translateY(0px) rotate(0deg); }
+        }
+
+        .krathong-river-item {
+            position: absolute;
+            animation: floatRiver linear infinite;
+            cursor: pointer;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .krathong-river-item:hover {
+            filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8));
+            z-index: 40 !important;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B132B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D97706;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F59E0B;
+        }
+
+        /* Golden Border Thai Style */
+        .thai-gold-border {
+            border: 2px solid #F59E0B;
+            box-shadow: inset 0 0 10px rgba(245, 158, 11, 0.2), 0 0 15px rgba(245, 158, 11, 0.15);
+        }
+
+        /* Custom Modal Backdrop */
+        .modal-blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-amber-500 selection:text-black">
+
+    <!-- NIGHT SKY & RIVER BACKGROUND -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <!-- Midnight Sky Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#020611] via-[#091124] to-[#121B35]"></div>
+
+        <!-- Full Moon -->
+        <div class="absolute top-6 right-8 md:top-10 md:right-24 w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-amber-100 via-yellow-200 to-amber-300 moon-glow flex items-center justify-center opacity-90">
+            <div class="w-full h-full rounded-full bg-yellow-100 opacity-30 blur-sm"></div>
+        </div>
+
+        <!-- Stars -->
+        <div id="stars-container" class="absolute inset-0 opacity-70"></div>
+
+        <!-- River Canvas Area background -->
+        <div class="absolute bottom-0 w-full h-3/5 water-ripple border-t border-amber-500/20">
+            <!-- Simulated Animated Water Waves -->
+            <div class="wave-bg" style="background-image: radial-gradient(circle at 50% 50%, rgba(245,158,11,0.08) 0%, transparent 60%);"></div>
+        </div>
+    </div>
+
+    <!-- AUDIO PLAYER & FLOATING CONTROLS -->
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-2">
+        <button id="audio-toggle-btn" class="bg-black/60 hover:bg-amber-900/80 border border-amber-500/50 text-amber-300 px-4 py-2 rounded-full backdrop-blur-md flex items-center gap-2 transition shadow-lg text-sm font-medium">
+            <i id="audio-icon" class="fas me-1 fa-music text-amber-400"></i>
+            <span id="audio-status-text">เพลงลอยกระทง: ปิด</span>
+            <span id="sound-wave" class="hidden flex items-end h-3 gap-0.5 ms-1">
+                <span class="w-1 bg-amber-400 h-full animate-bounce"></span>
+                <span class="w-1 bg-amber-400 h-2/3 animate-bounce" style="animation-delay: 0.2s"></span>
+                <span class="w-1 bg-amber-400 h-4/5 animate-bounce" style="animation-delay: 0.4s"></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- MAIN APP CONTENT CONTAINER -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+
+        <!-- HEADER SECTION -->
+        <header class="pt-6 pb-4 px-4 text-center max-w-4xl mx-auto w-full">
+            <div class="inline-flex items-center justify-center gap-3 mb-2 bg-amber-950/40 border border-amber-500/40 px-5 py-2 rounded-full backdrop-blur-sm shadow-xl">
+                <!-- Thai Emblem / Recreation Center Badge Icon -->
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-300 flex items-center justify-center text-slate-950 font-bold text-lg shadow">
+                    <i class="fas fa-water text-xs"></i>
+                </div>
+                <span class="text-amber-300 font-charm text-xl md:text-2xl font-bold tracking-wide">ศูนย์นันทนาการทวีวัฒนา</span>
+            </div>
+
+            <h1 class="text-3xl md:text-5xl font-bold font-charm text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-400 drop-shadow-md my-1">
+                กิจกรรมลอยกระทงออนไลน์ ประจำปี 2569
+            </h1>
+
+            <p class="text-amber-200/80 text-sm md:text-base font-light flex items-center justify-center gap-2">
+                <i class="far fa-calendar-alt text-amber-400"></i>
+                วันอังคารที่ 24 พฤศจิกายน 2569
+            </p>
+
+            <!-- STATS COUNTERS BAR -->
+            <div class="mt-4 flex flex-wrap justify-center items-center gap-4 text-xs md:text-sm">
+                <div class="bg-slate-900/80 border border-amber-500/30 px-4 py-1.5 rounded-full backdrop-blur-md flex items-center gap-2 shadow">
+                    <i class="fas fa-eye text-sky-400"></i>
+                    <span class="text-slate-300">เข้าชมทั้งหมด:</span>
+                    <span id="stat-views" class="font-bold text-amber-300 font-mono text-base">1,248</span>
+                    <span class="text-slate-400 text-[10px]">ครั้ง</span>
+                </div>
+
+                <div class="bg-slate-900/80 border border-amber-500/30 px-4 py-1.5 rounded-full backdrop-blur-md flex items-center gap-2 shadow">
+                    <i class="fas fa-pray text-amber-400"></i>
+                    <span class="text-slate-300">ร่วมลอยกระทงแล้ว:</span>
+                    <span id="stat-krathongs" class="font-bold text-amber-300 font-mono text-base">852</span>
+                    <span class="text-slate-400 text-[10px]">ใบ</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- RIVER SCENE (FLOATING KRATHONGS DISPLAY) -->
+        <section class="relative w-full h-64 md:h-80 my-2 overflow-hidden border-y border-amber-500/30 shadow-2xl">
+            <!-- River visual subtitle guide -->
+            <div class="absolute top-3 left-1/2 -translate-x-1/2 z-20 text-center pointer-events-none">
+                <span class="bg-black/40 border border-amber-500/30 text-amber-200/90 text-xs px-3 py-1 rounded-full backdrop-blur-md">
+                    <i class="fas fa-hand-pointer text-amber-400 me-1 animate-pulse"></i> คลิกที่กระทงในแม่น้ำเพื่ออ่านคำอธิษฐาน
+                </span>
+            </div>
+
+            <!-- Container where floated krathongs animate -->
+            <div id="river-krathong-stream" class="w-full h-full relative"></div>
+        </section>
+
+        <!-- KRATHONG BUILDER ACTION CARD -->
+        <main class="max-w-4xl mx-auto w-full px-4 mb-12 flex-grow">
+            <div class="bg-slate-950/80 border border-amber-500/40 rounded-2xl p-4 md:p-6 shadow-2xl backdrop-blur-xl relative">
+
+                <div class="text-center mb-6 border-b border-amber-500/20 pb-4">
+                    <h2 class="text-2xl md:text-3xl font-charm font-bold text-amber-300">
+                        <i class="fas fa-spa text-amber-400 me-2"></i>ประดิษฐ์กระทงออนไลน์ของคุณ
+                    </h2>
+                    <p class="text-xs md:text-sm text-slate-300 mt-1">
+                        เลือกองค์ประกอบกระทง เทียนประจำวันเกิด พร้อมพิมพ์คำอธิษฐานลงแม่น้ำ
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                    <!-- LEFT COLUMN: BUILDER FORM (7 COLS) -->
+                    <div class="lg:col-span-7 space-y-5">
+
+                        <!-- STEP 1: BASES -->
+                        <div>
+                            <label class="block text-sm font-semibold text-amber-300 mb-2">
+                                <span class="bg-amber-500 text-slate-950 rounded-full w-5 h-5 inline-flex items-center justify-center text-xs me-1.5 font-bold">1</span>
+                                เลือกฐานกระทง (Krathong Base)
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="base-options">
+                                <!-- Base items generated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: CANDLE BY DAY OF BIRTH -->
+                        <div>
+                            <label class="block text-sm font-semibold text-amber-300 mb-2">
+                                <span class="bg-amber-500 text-slate-950 rounded-full w-5 h-5 inline-flex items-center justify-center text-xs me-1.5 font-bold">2</span>
+                                เลือกเทียนสีประจำวันเกิด (Candle by Birthday)
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="candle-options">
+                                <!-- Candle items generated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: FLOWER DECORATIONS -->
+                        <div>
+                            <label class="block text-sm font-semibold text-amber-300 mb-2">
+                                <span class="bg-amber-500 text-slate-950 rounded-full w-5 h-5 inline-flex items-center justify-center text-xs me-1.5 font-bold">3</span>
+                                เลือกดอกไม้ประดับ (Flower Decoration)
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="flower-options">
+                                <!-- Flower items generated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- STEP 4: NAME & WISH -->
+                        <div class="space-y-3 pt-2">
+                            <div>
+                                <label for="user-name" class="block text-xs font-medium text-amber-200 mb-1">
+                                    ชื่อผู้ลอย / นามแฝง
+                                </label>
+                                <input type="text" id="user-name" maxlength="30" placeholder="ใส่ชื่อของคุณ..." value="ผู้มีจิตศรัทธา" 
+                                       class="w-full bg-slate-900 border border-amber-500/40 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400">
+                            </div>
+
+                            <div>
+                                <label for="user-wish" class="block text-xs font-medium text-amber-200 mb-1">
+                                    คำอธิษฐาน (Wish)
+                                </label>
+                                <textarea id="user-wish" rows="3" maxlength="150" placeholder="ขอให้มีความสุข กายสบายใจ ปราศจากโรคภัยไข้เจ็บ..."
+                                          class="w-full bg-slate-900 border border-amber-500/40 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400">ขอขมาพระแม่คงคา ขอให้ครอบครัวมีความสุข สุขภาพแข็งแรง เจริญรุ่งเรืองตลอดปี 2569</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: LIVE PREVIEW & ACTIONS (5 COLS) -->
+                    <div class="lg:col-span-5 flex flex-col items-center justify-between bg-slate-900/60 border border-amber-500/30 rounded-xl p-4 text-center">
+                        
+                        <div class="w-full">
+                            <span class="text-xs font-semibold text-amber-400 tracking-wider uppercase block mb-2">
+                                <i class="fas fa-eye me-1"></i>ตัวอย่างกระทงของคุณ
+                            </span>
+
+                            <!-- PREVIEW CANVAS / SVG RENDER AREA -->
+                            <div class="relative w-full aspect-square max-w-[260px] mx-auto my-2 rounded-xl bg-gradient-to-b from-slate-950 via-slate-900 to-indigo-950 border border-amber-500/30 flex items-center justify-center p-2 shadow-inner overflow-hidden">
+                                <!-- Stars background preview -->
+                                <div class="absolute top-2 right-3 text-yellow-200/40 text-xs">★</div>
+                                <div class="absolute top-6 left-4 text-yellow-200/30 text-xs">★</div>
+
+                                <!-- Dynamic SVG Krathong Render -->
+                                <div id="krathong-svg-preview" class="w-full h-full flex items-center justify-center"></div>
+                            </div>
+
+                            <p id="preview-day-text" class="text-xs text-amber-300 font-medium mt-1">
+                                เทียนประจำวัน: -
+                            </p>
+                        </div>
+
+                        <!-- BUTTONS -->
+                        <div class="w-full space-y-2 mt-4">
+                            <button id="float-btn" class="w-full bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-amber-500/30 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 text-base">
+                                <i class="fas fa-paper-plane text-lg"></i>
+                                ลอยกระทงลงแม่น้ำ
+                            </button>
+
+                            <button id="save-img-btn" class="w-full bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 font-medium py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center gap-2 text-sm">
+                                <i class="fas fa-download text-amber-400"></i>
+                                บันทึกภาพกระทงลงอัลบั้ม
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-6 border-t border-amber-500/20 text-slate-400 text-xs bg-slate-950/80 backdrop-blur-md">
+            <p class="font-charm text-base text-amber-300 mb-1">ศูนย์นันทนาการทวีวัฒนา</p>
+            <p>สำนักวัฒนธรรม กีฬา และการท่องเที่ยว กรุงเทพมหานคร</p>
+            <p class="mt-1 text-slate-500">กิจกรรมลอยกระทงออนไลน์ สืบสานประเพณีไทย ประจำปี 2569</p>
+        </footer>
+    </div>
+
+    <!-- MODAL: VIEW FLOATING WISH FROM RIVER KRATHONG -->
+    <div id="wish-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-blur hidden">
+        <div class="absolute inset-0 bg-slate-950/70" onclick="closeWishModal()"></div>
+        <div class="relative bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-amber-500/60 rounded-2xl p-6 max-w-md w-full shadow-2xl text-center z-10 transform transition-all scale-95 opacity-0 duration-200" id="wish-modal-card">
+            
+            <button onclick="closeWishModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800/80 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="w-16 h-16 mx-auto mb-3 text-amber-400 flex items-center justify-center rounded-full bg-amber-500/10 border border-amber-500/30">
+                <i class="fas fa-hands-praying text-2xl"></i>
+            </div>
+
+            <h3 class="text-xl font-charm font-bold text-amber-300 mb-1" id="modal-wish-owner">
+                กระทงของ...
+            </h3>
+            
+            <span class="inline-block px-3 py-0.5 rounded-full bg-slate-800 text-amber-200/80 text-xs border border-amber-500/20 mb-4" id="modal-wish-day">
+                วันเกิด: -
+            </span>
+
+            <div class="bg-slate-950/60 border border-amber-500/20 rounded-xl p-4 text-slate-200 text-sm leading-relaxed mb-5 italic font-charm text-lg">
+                "<span id="modal-wish-text">ขอให้มีความสุข</span>"
+            </div>
+
+            <button onclick="closeWishModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-2 rounded-xl text-sm transition shadow">
+                ร่วมอนุโมทนาบุญ
+            </button>
+        </div>
+    </div>
+
+    <!-- HIDDEN HTML CANVAS FOR EXPORT IMAGE -->
+    <canvas id="export-canvas" width="600" height="750" class="hidden"></canvas>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        /* ==================== DATA DEFINITIONS ==================== */
+        const KRATHONG_BASES = [
+            { id: 'leaf', name: 'ใบตองตานี', desc: 'ธรรมชาติ สวยงาม', icon: '🍃', color: '#15803d' },
+            { id: 'flower', name: 'กล้วยไม้สด', desc: 'ดอกไม้สดใส', icon: '🌸', color: '#c026d3' },
+            { id: 'coconut', name: 'กะลามะพร้าว', desc: 'ภูมิปัญญาไทย', icon: '🥥', color: '#78350f' },
+            { id: 'bread', name: 'กระทงขนมปัง', desc: 'อาหารปลา', icon: '🍞', color: '#d97706' },
+            { id: 'sugarcane', name: 'ชานอ้อยรักษ์โลก', desc: 'ย่อยสลาย 100%', icon: '🌿', color: '#84cc16' }
+        ];
+
+        const CANDLE_DAYS = [
+            { day: 'อาทิตย์', colorName: 'สีแดง', hex: '#ef4444', textCol: 'red-500' },
+            { day: 'จันทร์', colorName: 'สีเหลือง', hex: '#eab308', textCol: 'yellow-500' },
+            { day: 'อังคาร', colorName: 'สีชมพู', hex: '#ec4899', textCol: 'pink-500' },
+            { day: 'พุธ', colorName: 'สีเขียว', hex: '#22c55e', textCol: 'green-500' },
+            { day: 'พฤหัสบดี', colorName: 'สีส้ม-แสด', hex: '#f97316', textCol: 'orange-500' },
+            { day: 'ศุกร์', colorName: 'สีฟ้า', hex: '#06b6d4', textCol: 'cyan-500' },
+            { day: 'เสาร์', colorName: 'สีม่วง', hex: '#a855f7', textCol: 'purple-500' }
+        ];
+
+        const FLOWERS = [
+            { id: 'marigold', name: 'ดอกดาวเรือง', color: '#facc15', symbol: '🌼' },
+            { id: 'rose', name: 'ดอกกุหลาบ', color: '#f43f5e', symbol: '🌹' },
+            { id: 'jasmine', name: 'ดอกมะลิ', color: '#ffffff', symbol: '🌸' },
+            { id: 'orchid', name: 'ดอกกล้วยไม้', color: '#d946ef', symbol: '🌺' }
+        ];
+
+        // Sample initial floating wishes in river
+        const INITIAL_FLOATING_WISHES = [
+            { name: 'สมชาย ใจดี', day: 'อาทิตย์', base: 'leaf', candle: '#ef4444', wish: 'ขอให้ครอบครัวมีความสุข ปราศจากโรคภัยไข้เจ็บ' },
+            { name: 'สิรินทร์ มีสุข', day: 'จันทร์', base: 'flower', candle: '#eab308', wish: 'ขอให้การงานเจริญรุ่งเรือง สอบผ่านทุกวิชา' },
+            { name: 'ศูนย์นันทนาการทวีวัฒนา', day: 'พุธ', base: 'sugarcane', candle: '#22c55e', wish: 'ต้อนรับทุกท่านสู่กิจกรรมลอยกระทงออนไลน์ 2569' },
+            { name: 'น้องกล้วยหอม', day: 'ศุกร์', base: 'bread', candle: '#06b6d4', wish: 'ขอให้แม่น้ำสะอาด ปลาน้อยมีความสุข' },
+            { name: 'ธนกร ปัญญาดี', day: 'พฤหัสบดี', base: 'coconut', candle: '#f97316', wish: 'ขอให้ปี 2569 เป็นปีที่ดีที่สุดของทุกคน' }
+        ];
+
+        /* ==================== STATE ==================== */
+        let state = {
+            selectedBase: KRATHONG_BASES[0].id,
+            selectedDayIdx: 0,
+            selectedFlower: FLOWERS[0].id,
+            userName: 'ผู้มีจิตศรัทธา',
+            userWish: 'ขอขมาพระแม่คงคา ขอให้ครอบครัวมีความสุข สุขภาพแข็งแรง เจริญรุ่งเรืองตลอดปี 2569',
+            viewsCount: 1248,
+            krathongsCount: 852
+        };
+
+        /* ==================== INIT FUNCTIONS ==================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            initStars();
+            initCounters();
+            renderFormOptions();
+            bindEvents();
+            updatePreview();
+            populateInitialRiver();
+            initAudioSynth();
+        });
+
+        // Generate background stars
+        function initStars() {
+            const container = document.getElementById('stars-container');
+            const count = 45;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'absolute rounded-full bg-white opacity-60';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 50}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                container.appendChild(star);
+            }
+        }
+
+        // LocalStorage View & Krathong Counter Sync
+        function initCounters() {
+            let views = parseInt(localStorage.getItem('twt_loy_views') || '1248');
+            let krathongs = parseInt(localStorage.getItem('twt_loy_krathongs') || '852');
+
+            // Increment current view count
+            views += 1;
+            localStorage.setItem('twt_loy_views', views);
+
+            state.viewsCount = views;
+            state.krathongsCount = krathongs;
+
+            document.getElementById('stat-views').textContent = views.toLocaleString();
+            document.getElementById('stat-krathongs').textContent = krathongs.toLocaleString();
+
+            // Dynamic slight auto updates simulation for real-time vibe
+            setInterval(() => {
+                if (Math.random() > 0.6) {
+                    state.viewsCount += 1;
+                    document.getElementById('stat-views').textContent = state.viewsCount.toLocaleString();
+                }
+            }, 12000);
+        }
+
+        // Render Radio-style selection grids
+        function renderFormOptions() {
+            // 1. Bases
+            const baseContainer = document.getElementById('base-options');
+            baseContainer.innerHTML = KRATHONG_BASES.map(b => `
+                <button type="button" onclick="selectBase('${b.id}')" id="base-btn-${b.id}"
+                        class="p-2 border rounded-xl flex flex-col items-center justify-center gap-1 transition text-center ${state.selectedBase === b.id ? 'border-amber-400 bg-amber-500/20 text-amber-200' : 'border-slate-800 bg-slate-900/80 text-slate-400 hover:border-slate-700'}">
+                    <span class="text-2xl">${b.icon}</span>
+                    <span class="text-xs font-medium leading-tight">${b.name}</span>
+                </button>
+            `).join('');
+
+            // 2. Candles
+            const candleContainer = document.getElementById('candle-options');
+            candleContainer.innerHTML = CANDLE_DAYS.map((c, idx) => `
+                <button type="button" onclick="selectCandle(${idx})" id="candle-btn-${idx}"
+                        class="p-2 border rounded-xl flex flex-col items-center justify-center gap-1 transition text-center ${state.selectedDayIdx === idx ? 'border-amber-400 bg-amber-500/20 text-amber-200' : 'border-slate-800 bg-slate-900/80 text-slate-400 hover:border-slate-700'}">
+                    <div class="w-4 h-4 rounded-full shadow" style="background-color: ${c.hex}"></div>
+                    <span class="text-xs font-medium">${c.day}</span>
+                </button>
+            `).join('');
+
+            // 3. Flowers
+            const flowerContainer = document.getElementById('flower-options');
+            flowerContainer.innerHTML = FLOWERS.map(f => `
+                <button type="button" onclick="selectFlower('${f.id}')" id="flower-btn-${f.id}"
+                        class="p-2 border rounded-xl flex flex-col items-center justify-center gap-1 transition text-center ${state.selectedFlower === f.id ? 'border-amber-400 bg-amber-500/20 text-amber-200' : 'border-slate-800 bg-slate-900/80 text-slate-400 hover:border-slate-700'}">
+                    <span class="text-xl">${f.symbol}</span>
+                    <span class="text-xs font-medium">${f.name}</span>
+                </button>
+            `).join('');
+        }
+
+        /* ==================== SELECTION LOGIC ==================== */
+        function selectBase(id) {
+            state.selectedBase = id;
+            renderFormOptions();
+            updatePreview();
+        }
+
+        function selectCandle(idx) {
+            state.selectedDayIdx = idx;
+            renderFormOptions();
+            updatePreview();
+        }
+
+        function selectFlower(id) {
+            state.selectedFlower = id;
+            renderFormOptions();
+            updatePreview();
+        }
+
+        function bindEvents() {
+            document.getElementById('user-name').addEventListener('input', (e) => {
+                state.userName = e.target.value.trim() || 'ผู้มีจิตศรัทธา';
+            });
+            document.getElementById('user-wish').addEventListener('input', (e) => {
+                state.userWish = e.target.value.trim() || 'ขอให้มีความสุข กายสบายใจ';
+            });
+
+            document.getElementById('float-btn').addEventListener('click', handleFloatKrathong);
+            document.getElementById('save-img-btn').addEventListener('click', generateExportImageCard);
+        }
+
+        /* ==================== SVG VECTOR KRATHONG GENERATOR ==================== */
+        function createKrathongSVG(baseId, candleHex, flowerId, isPreview = true) {
+            const baseObj = KRATHONG_BASES.find(b => b.id === baseId) || KRATHONG_BASES[0];
+            const flowerObj = FLOWERS.find(f => f.id === flowerId) || FLOWERS[0];
+
+            // Render candle flame SVG
+            return `
+            <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-xl" xmlns="http://www.w3.org/2000/svg">
+                <!-- Water ripple glow under krathong -->
+                <ellipse cx="100" cy="155" rx="70" ry="18" fill="rgba(245, 158, 11, 0.25)" filter="blur(6px)"/>
+
+                <!-- KRATHONG BASE LAYER -->
+                <g id="base-layer">
+                    ${getBaseSVGShape(baseId)}
+                </g>
+
+                <!-- FLOWERS LAYER -->
+                <g id="flowers-layer">
+                    <!-- Circle of flowers around candle -->
+                    <circle cx="70" cy="125" r="8" fill="${flowerObj.color}" />
+                    <circle cx="130" cy="125" r="8" fill="${flowerObj.color}" />
+                    <circle cx="85" cy="135" r="9" fill="${flowerObj.color}" />
+                    <circle cx="115" cy="135" r="9" fill="${flowerObj.color}" />
+                    <circle cx="100" cy="140" r="10" fill="${flowerObj.color}" />
+                    <!-- Inner flower centers -->
+                    <circle cx="70" cy="125" r="3" fill="#fef08a" />
+                    <circle cx="130" cy="125" r="3" fill="#fef08a" />
+                    <circle cx="85" cy="135" r="3.5" fill="#fef08a" />
+                    <circle cx="115" cy="135" r="3.5" fill="#fef08a" />
+                    <circle cx="100" cy="140" r="4" fill="#fef08a" />
+                </g>
+
+                <!-- INCENSE STICKS (3 STICKS) -->
+                <g id="incense-layer">
+                    <line x1="93" y1="110" x2="88" y2="60" stroke="#78350f" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="100" y1="110" x2="100" y2="55" stroke="#78350f" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="107" y1="110" x2="112" y2="60" stroke="#78350f" stroke-width="2.5" stroke-linecap="round" />
+                    
+                    <!-- Incense Tips Red Light -->
+                    <circle cx="88" cy="60" r="1.5" fill="#ef4444" />
+                    <circle cx="100" cy="55" r="1.5" fill="#ef4444" />
+                    <circle cx="112" cy="60" r="1.5" fill="#ef4444" />
+
+                    <!-- Smoke animation effect -->
+                    <circle cx="88" cy="52" r="3" fill="rgba(255,255,255,0.4)" class="incense-smoke" />
+                    <circle cx="100" cy="47" r="3.5" fill="rgba(255,255,255,0.4)" class="incense-smoke" style="animation-delay: 0.4s;" />
+                    <circle cx="112" cy="52" r="3" fill="rgba(255,255,255,0.4)" class="incense-smoke" style="animation-delay: 0.8s;" />
+                </g>
+
+                <!-- BIRTHDAY CANDLE LAYER -->
+                <g id="candle-layer">
+                    <!-- Candle Body -->
+                    <rect x="94" y="70" width="12" height="42" rx="2" fill="${candleHex}" stroke="#ffffff" stroke-width="0.5" />
+                    <!-- Wick -->
+                    <line x1="100" y1="70" x2="100" y2="62" stroke="#1e293b" stroke-width="1.5" />
+
+                    <!-- Glow Outer -->
+                    <circle cx="100" cy="56" r="16" fill="rgba(253, 224, 71, 0.35)" filter="blur(4px)" />
+
+                    <!-- Animated Flame -->
+                    <g class="candle-flame">
+                        <path d="M 100 44 C 94 54, 96 62, 100 63 C 104 62, 106 54, 100 44 Z" fill="#f97316" />
+                        <path d="M 100 48 C 96 55, 98 61, 100 62 C 102 61, 104 55, 100 48 Z" fill="#facc15" />
+                        <path d="M 100 54 C 98 58, 99 61, 100 61 C 101 61, 102 58, 100 54 Z" fill="#ffffff" />
+                    </g>
+                </g>
+            </svg>
+            `;
+        }
+
+        function getBaseSVGShape(baseId) {
+            switch(baseId) {
+                case 'leaf': // Banana Leaf traditional
+                    return `
+                        <!-- Outer Petals -->
+                        <path d="M 30 140 Q 100 185 170 140 Q 185 110 100 120 Q 15 110 30 140 Z" fill="#15803d" stroke="#166534" stroke-width="2"/>
+                        <!-- Folded Banana Leaves crown -->
+                        <polygon points="20,130 45,110 60,135" fill="#22c55e" stroke="#15803d" />
+                        <polygon points="50,135 75,105 90,138" fill="#16a34a" stroke="#15803d" />
+                        <polygon points="80,138 100,100 120,138" fill="#22c55e" stroke="#15803d" />
+                        <polygon points="110,138 125,105 150,135" fill="#16a34a" stroke="#15803d" />
+                        <polygon points="140,135 155,110 180,130" fill="#22c55e" stroke="#15803d" />
+                        <!-- Base Trunk -->
+                        <ellipse cx="100" cy="142" rx="72" ry="18" fill="#14532d" />
+                    `;
+                case 'flower': // Fresh Orchid Pink
+                    return `
+                        <ellipse cx="100" cy="145" rx="75" ry="20" fill="#a21caf" />
+                        <!-- Pink Petals -->
+                        <path d="M 25 135 C 50 175, 150 175, 175 135 C 190 120, 100 115, 25 135 Z" fill="#c026d3" />
+                        <circle cx="35" cy="130" r="14" fill="#e879f9"/>
+                        <circle cx="65" cy="145" r="16" fill="#f0abfc"/>
+                        <circle cx="100" cy="150" r="18" fill="#e879f9"/>
+                        <circle cx="135" cy="145" r="16" fill="#f0abfc"/>
+                        <circle cx="165" cy="130" r="14" fill="#e879f9"/>
+                    `;
+                case 'coconut': // Coconut Shell
+                    return `
+                        <ellipse cx="100" cy="148" rx="68" ry="22" fill="#451a03" />
+                        <path d="M 32 140 Q 100 185 168 140 Q 160 122 100 125 Q 40 122 32 140 Z" fill="#78350f" stroke="#451a03" stroke-width="3"/>
+                        <ellipse cx="100" cy="138" rx="60" ry="14" fill="#fff7ed" opacity="0.9" />
+                    `;
+                case 'bread': // Bread Krathong
+                    return `
+                        <ellipse cx="100" cy="145" rx="72" ry="20" fill="#92400e" />
+                        <rect x="35" y="125" width="130" height="24" rx="12" fill="#d97706" stroke="#b45309" stroke-width="2" />
+                        <!-- Bread texture bumps -->
+                        <circle cx="55" cy="137" r="7" fill="#f59e0b"/>
+                        <circle cx="85" cy="137" r="8" fill="#f59e0b"/>
+                        <circle cx="115" cy="137" r="8" fill="#f59e0b"/>
+                        <circle cx="145" cy="137" r="7" fill="#f59e0b"/>
+                    `;
+                case 'sugarcane': // Eco Sugar Cane
+                    return `
+                        <ellipse cx="100" cy="146" rx="70" ry="20" fill="#3f6212" />
+                        <path d="M 30 135 Q 100 178 170 135 Q 160 118 100 122 Q 40 118 30 135 Z" fill="#65a30d" stroke="#4d7c0f" stroke-width="2"/>
+                        <ellipse cx="100" cy="132" rx="62" ry="12" fill="#84cc16" />
+                    `;
+                default:
+                    return '';
+            }
+        }
+
+        function updatePreview() {
+            const candle = CANDLE_DAYS[state.selectedDayIdx];
+            const previewContainer = document.getElementById('krathong-svg-preview');
+            
+            previewContainer.innerHTML = createKrathongSVG(
+                state.selectedBase,
+                candle.hex,
+                state.selectedFlower,
+                true
+            );
+
+            document.getElementById('preview-day-text').innerHTML = `
+                เทียนประจำวัน: <span style="color: ${candle.hex}" class="font-bold">${candle.day} (${candle.colorName})</span>
+            `;
+        }
+
+        /* ==================== RIVER ANIMATION & FLOATING ==================== */
+        function populateInitialRiver() {
+            INITIAL_FLOATING_WISHES.forEach((item, index) => {
+                setTimeout(() => {
+                    spawnKrathongToRiver(item);
+                }, index * 2500);
+            });
+        }
+
+        function spawnKrathongToRiver(data) {
+            const river = document.getElementById('river-krathong-stream');
+            const candleHex = data.candle || CANDLE_DAYS[0].hex;
+
+            const el = document.createElement('div');
+            el.className = 'krathong-river-item flex flex-col items-center justify-center';
+            
+            // Randomize vertical speed and height position in river
+            const randomTop = Math.floor(Math.random() * 50) + 20; // 20% to 70% top
+            const randomDuration = Math.floor(Math.random() * 15) + 22; // 22s - 37s duration
+            const randomScale = (Math.random() * 0.35 + 0.65).toFixed(2); // scale 0.65 to 1.0
+
+            el.style.top = `${randomTop}%`;
+            el.style.animationDuration = `${randomDuration}s`;
+            el.style.zIndex = Math.floor(randomTop);
+
+            const svgHtml = createKrathongSVG(data.base, candleHex, 'marigold', false);
+
+            el.innerHTML = `
+                <div class="relative flex flex-col items-center" style="transform: scale(${randomScale});">
+                    <!-- Floating Name Badge -->
+                    <div class="bg-black/70 border border-amber-400/50 text-amber-200 text-[11px] px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-md mb-1 backdrop-blur-sm pointer-events-none">
+                        ${data.name}
+                    </div>
+                    <!-- Krathong SVG -->
+                    <div class="w-28 h-28 md:w-36 md:h-36">
+                        ${svgHtml}
+                    </div>
+                </div>
+            `;
+
+            // Click event to view wish card
+            el.addEventListener('click', () => {
+                openWishModal(data);
+            });
+
+            river.appendChild(el);
+
+            // Remove node after animation cycle finishes
+            setTimeout(() => {
+                if (el && el.parentNode) {
+                    el.parentNode.removeChild(el);
+                }
+            }, randomDuration * 1000);
+        }
+
+        function handleFloatKrathong() {
+            const candle = CANDLE_DAYS[state.selectedDayIdx];
+            const wishObj = {
+                name: state.userName,
+                day: candle.day,
+                base: state.selectedBase,
+                candle: candle.hex,
+                wish: state.userWish
+            };
+
+            // Spawn user krathong immediately
+            spawnKrathongToRiver(wishObj);
+
+            // Update stats counter
+            state.krathongsCount += 1;
+            localStorage.setItem('twt_loy_krathongs', state.krathongsCount);
+            document.getElementById('stat-krathongs').textContent = state.krathongsCount.toLocaleString();
+
+            // Play floating chime effect if audio context ready
+            playChimeSound();
+
+            // Toast feedback message
+            showToast(`กระทงของคุณ "${state.userName}" ถูกลอยลงสู่แม่น้ำแล้ว! ✨`);
+        }
+
+        /* ==================== WISH MODAL ==================== */
+        function openWishModal(data) {
+            document.getElementById('modal-wish-owner').textContent = `กระทงของ: ${data.name}`;
+            document.getElementById('modal-wish-day').textContent = `เทียนวันเกิด: วัน${data.day}`;
+            document.getElementById('modal-wish-text').textContent = data.wish;
+
+            const modal = document.getElementById('wish-modal');
+            const card = document.getElementById('wish-modal-card');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeWishModal() {
+            const modal = document.getElementById('wish-modal');
+            const card = document.getElementById('wish-modal-card');
+
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        /* ==================== EXPORT IMAGE GENERATOR (CANVAS) ==================== */
+        function generateExportImageCard() {
+            const canvas = document.getElementById('export-canvas');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            const candle = CANDLE_DAYS[state.selectedDayIdx];
+
+            // 1. Background Gradient (Midnight River Sky)
+            const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+            bgGradient.addColorStop(0, '#020611');
+            bgGradient.addColorStop(0.5, '#091124');
+            bgGradient.addColorStop(1, '#121B35');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // 2. Stars Drawing
+            ctx.fillStyle = '#ffffff';
+            for (let i = 0; i < 35; i++) {
+                const x = (i * 17) % width;
+                const y = (i * 23) % (height * 0.5);
+                ctx.globalAlpha = (i % 5 + 3) / 10;
+                ctx.beginPath();
+                ctx.arc(x, y, (i % 2) + 1, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1.0;
+
+            // 3. Glowing Full Moon
+            ctx.shadowColor = '#fef08a';
+            ctx.shadowBlur = 30;
+            ctx.fillStyle = '#fef3c7';
+            ctx.beginPath();
+            ctx.arc(width - 80, 90, 45, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0; // reset shadow
+
+            // 4. MANDATORY BANNER HEADER
+            ctx.textAlign = 'center';
+            
+            // Outer Gold Frame Border
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(15, 15, width - 30, height - 30);
+            
+            ctx.strokeStyle = '#d97706';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(22, 22, width - 44, height - 44);
+
+            // Mandatory Title Line 1
+            ctx.fillStyle = '#fde047';
+            ctx.font = 'bold 26px "Sarabun", sans-serif';
+            ctx.fillText('กิจกรรมลอยกระทงออนไลน์ ประจำปี 2569', width / 2, 65);
+
+            // Mandatory Subtitle Line 2
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 22px "Sarabun", sans-serif';
+            ctx.fillText('ศูนย์นันทนาการทวีวัฒนา', width / 2, 100);
+
+            // Date Line
+            ctx.fillStyle = '#e2e8f0';
+            ctx.font = '14px "Sarabun", sans-serif';
+            ctx.fillText('วันอังคารที่ 24 พฤศจิกายน 2569', width / 2, 125);
+
+            // Decorative Divider Line
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(120, 140);
+            ctx.lineTo(width - 120, 140);
+            ctx.stroke();
+
+            // 5. Render Krathong Art in Center Canvas
+            const svgPreview = document.getElementById('krathong-svg-preview').innerHTML;
+            const img = new Image();
+            const svgBlob = new Blob([svgPreview], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+
+            img.onload = function() {
+                // Draw Krathong image
+                ctx.drawImage(img, width / 2 - 130, 170, 260, 260);
+                URL.revokeObjectURL(url);
+
+                // 6. User Info Card Box at bottom
+                const cardY = 460;
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+                ctx.strokeStyle = 'rgba(245, 158, 11, 0.5)';
+                ctx.lineWidth = 1.5;
+                
+                // Rounded rect
+                roundRect(ctx, 40, cardY, width - 80, 230, 15, true, true);
+
+                // User Name
+                ctx.fillStyle = '#fde047';
+                ctx.font = 'bold 20px "Sarabun", sans-serif';
+                ctx.fillText(`ผู้ลอย: ${state.userName}`, width / 2, cardY + 40);
+
+                // Day Candle Info
+                ctx.fillStyle = candle.hex;
+                ctx.font = '16px "Sarabun", sans-serif';
+                ctx.fillText(`เทียนวันเกิด: วัน${candle.day} (${candle.colorName})`, width / 2, cardY + 70);
+
+                // Wish Text Box
+                ctx.fillStyle = '#f8fafc';
+                ctx.font = 'italic 16px "Sarabun", sans-serif';
+                
+                // Wrap Wish text inside box
+                wrapText(ctx, `"${state.userWish}"`, width / 2, cardY + 115, width - 120, 24);
+
+                // Footer credits inside card
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = '12px "Sarabun", sans-serif';
+                ctx.fillText('สืบสานประเพณีลอยกระทงอย่างยั่งยืน • ศูนย์นันทนาการทวีวัฒนา', width / 2, cardY + 205);
+
+                // 7. Trigger Direct Download
+                const link = document.createElement('a');
+                link.download = `กระทงออนไลน์-ทวีวัฒนา-${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                showToast('บันทึกภาพกระทงลงเครื่องเรียบร้อยแล้ว!');
+            };
+
+            img.src = url;
+        }
+
+        // Helper Canvas Rounded Rect
+        function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+            if (fill) ctx.fill();
+            if (stroke) ctx.stroke();
+        }
+
+        // Helper Canvas Text Wrap
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+            const words = text.split('');
+            let line = '';
+            let currentY = y;
+
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n];
+                const metrics = ctx.measureText(testLine);
+                const testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    ctx.fillText(line, x, currentY);
+                    line = words[n];
+                    currentY += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, x, currentY);
+        }
+
+        /* ==================== WEB AUDIO API LOY KRATHONG MELODY ==================== */
+        let audioCtx = null;
+        let isPlayingAudio = false;
+        let musicTimer = null;
+
+        function initAudioSynth() {
+            document.getElementById('audio-toggle-btn').addEventListener('click', toggleAudio);
+        }
+
+        function toggleAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (isPlayingAudio) {
+                stopMusic();
+            } else {
+                startMusic();
+            }
+        }
+
+        function startMusic() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            isPlayingAudio = true;
+            document.getElementById('audio-status-text').textContent = 'เพลงลอยกระทง: เปิด';
+            document.getElementById('sound-wave').classList.remove('hidden');
+            
+            // Loy Krathong pentatonic synth notes array (Frequencies)
+            const notes = [
+                392.00, 440.00, 523.25, 587.33, 659.25, // G4, A4, C5, D5, E5
+                587.33, 523.25, 440.00, 392.00, 523.25
+            ];
+            let noteIdx = 0;
+
+            musicTimer = setInterval(() => {
+                if (!isPlayingAudio) return;
+                playTone(notes[noteIdx % notes.length], 0.4);
+                noteIdx++;
+            }, 500);
+        }
+
+        function stopMusic() {
+            isPlayingAudio = false;
+            if (musicTimer) clearInterval(musicTimer);
+            document.getElementById('audio-status-text').textContent = 'เพลงลอยกระทง: ปิด';
+            document.getElementById('sound-wave').classList.add('hidden');
+        }
+
+        function playTone(freq, duration) {
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function playChimeSound() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                setTimeout(() => playTone(freq, 0.6), i * 120);
+            });
+        }
+
+        /* ==================== TOAST NOTIFICATION ==================== */
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-amber-500 text-slate-950 px-5 py-2.5 rounded-full font-semibold shadow-2xl flex items-center gap-2 border border-yellow-200 transition-all transform translate-y-10 opacity-0 text-sm';
+            toast.innerHTML = `<i class="fas fa-check-circle text-lg"></i> ${message}`;
+            
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
